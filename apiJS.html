@@ -40,8 +40,19 @@
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
                 //hantera svar
-                var obj = JSON.parse(xhttp.responseText);
+                var obj = JSON.parse(xhttp.responseText).Search;
                 console.log(obj);
+                
+                var items = "";
+                
+                for (var i in obj) {
+                    items += "<article>" +
+                                 "<h1>" + obj[i].Title + "</h1>" + 
+                                "<p>" + obj[i].Year + "</p>" +  
+                                "<img src=" + obj[i].Poster + "/>" + 
+                            "</article>";
+                }
+                list.innerHTML = items;
             }
         }
     </script>
